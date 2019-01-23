@@ -25,7 +25,7 @@ class ListsQiniu
         $auth = new Auth(config('UEditorUpload.core.qiniu.accessKey'), config('UEditorUpload.core.qiniu.secretKey'));
 
         $bucketManager = new BucketManager($auth);
-        list($items, $marker, $error) = $bucketManager->listFiles(config('UEditorUpload.core.qiniu.bucket'), $this->path, $start, $size);
+        list($items, $error) = $bucketManager->listFiles(config('UEditorUpload.core.qiniu.bucket'), $this->path, $start, $size);
 
         if ($error) {
             return [
@@ -35,7 +35,7 @@ class ListsQiniu
                 "total" => 0
             ];
         }
-        if(empty($items)){
+        if(empty($items['items'])){
             return [
                 "state" => "no match file",
                 "list" => array(),
@@ -45,7 +45,7 @@ class ListsQiniu
         }
 
         $files=[];
-        foreach ($items as  $v) {
+        foreach ($items['items'] as  $v) {
             if (preg_match("/\.(" . $this->allowFiles . ")$/i", $v['key'])) {
                 $files[] = array(
                     'url' =>rtrim(config('UEditorUpload.core.qiniu.url'),'/').'/'.$v['key'],
