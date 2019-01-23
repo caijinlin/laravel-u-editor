@@ -1,11 +1,11 @@
-<?php namespace Stevenyangecho\UEditor;
+<?php namespace Caijinlin\UEditor;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Stevenyangecho\UEditor\Uploader\UploadScrawl;
-use Stevenyangecho\UEditor\Uploader\UploadFile;
-use Stevenyangecho\UEditor\Uploader\UploadCatch;
+use Caijinlin\UEditor\Uploader\UploadScrawl;
+use Caijinlin\UEditor\Uploader\UploadFile;
+use Caijinlin\UEditor\Uploader\UploadCatch;
 
 class Controller extends BaseController
 {
